@@ -10,7 +10,7 @@ Use it directly ([§ Install](#install)) or take inspiration from it
 ## Install
 
 > 🟧 **TODO**
-> 
+>
 > Confirm installation before publishing
 
 1. Add the dependency
@@ -23,16 +23,16 @@ Use it directly ([§ Install](#install)) or take inspiration from it
 
    ```js
    import connorjsConfig from "eslint-config-connorjs";
-   
+
    export default {
-     // earlier configuration
-     connorjsConfig,
-     // later 
-   }
+   	// earlier configuration
+   	connorjsConfig,
+   	// later
+   };
    ```
 
 To learn more about ESLint flat config, check out the [blog
-posts][eslint-flat-config-blog] or the [documentation][eslint-flat-config-docs]. 
+posts][eslint-flat-config-blog] or the [documentation][eslint-flat-config-docs].
 
 [eslint-flat-config-blog]: https://eslint.org/blog/2022/08/new-config-system-part-2/
 [eslint-flat-config-docs]: https://eslint.org/docs/latest/use/configure/configuration-files-new
