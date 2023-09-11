@@ -1,0 +1,28 @@
+{
+  "name": "eslint-config-connorjs",
+  "version": "1.0.0-alpha.0",
+  "description": "My (@connorjs’) preferred ESLint configuration. With ESLint flat config.",
+  "keywords": [
+    "eslint",
+    "eslint-config"
+  ],
+  "homepage": "https://github.com/connorjs/eslint-config-connorjs#readme",
+  "bugs": {
+    "url": "https://github.com/connorjs/eslint-config-connorjs/issues"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Connor Sullivan",
+    "email": "dev.connorjs@gmail.com",
+    "url": "https://github.com/connorjs"
+  },
+  "type": "module",
+  "files": ["src"],
+  "exports": {
+    ".": "./src/index.js"
+  },
+  "scripts": {
+  },
+  "devDependencies": {
+  }
+}
