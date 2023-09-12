@@ -19,6 +19,7 @@ Use it directly ([§ Install](#install)) or take inspiration from it
 - [Project structure](#project-structure)
 - [Rules and reasoning](#rules-and-reasoning)
   - [Base rules](#base-rules)
+  - [JSON (and JSONC)](#json)
 
 ## Install
 
@@ -75,7 +76,7 @@ The 🔧 emoji indicates that configured rules are automatically fixable with
 
 ### Base rules
 
-The [base rules](./src/base.js) apply to all file types.
+The [base rules config](./src/base.js) apply to all file types.
 
 - Configures ESLint linter options
 
@@ -99,3 +100,32 @@ The [base rules](./src/base.js) apply to all file types.
 [global-ignores]: https://eslint.org/docs/latest/use/configure/configuration-files-new#globally-ignoring-files-with-ignores
 [prettier]: https://prettier.io
 [reportUnusedDisableDirectives]: https://eslint.org/docs/latest/use/configure/configuration-files-new#reporting-unused-disable-directives
+
+### JSON
+
+The [JSON config](./src/json.js) applies to all JSON files. It handles JSONC
+(JSON with comments) and JSONC-like files.
+
+- Configures [jsonc-eslint-parser] as the parser for the `.json` and `.jsonc`
+  files. (It does not lint `package-lock.json`.)
+
+- Includes [eslint-plugin-jsonc] and registers its recommended and prettier
+  rule sets. Configures two sorting rules for all JSON files.
+
+  - 🔧 [jsonc/sort-array-values][jsonc-sort-array-values] to standardize the
+    array member order (no need to think or worry about the “best” order) and
+    reduces merge conflicts. Feel free to `eslint-disable` at call sites.
+  - 🔧 [jsonc/sort-keys][jsonc-sort-keys] sorts the keys
+
+- Allows comments in JSONC and JSONC-like files (for example, `tsconfig.json`)
+
+- 🔧 Configures an explicit sort order for `package.json` keys. See the code for
+  details.
+
+  This overrides the previous jsonc/sort-keys configuration. You can configure
+  specific sort orders for other files using similar logic.
+
+[eslint-plugin-jsonc]: https://ota-meshi.github.io/eslint-plugin-jsonc/
+[jsonc-eslint-parser]: https://www.npmjs.com/package/jsonc-eslint-parser
+[jsonc-sort-array-values]: https://ota-meshi.github.io/eslint-plugin-jsonc/rules/sort-array-values.html
+[jsonc-sort-keys]: https://ota-meshi.github.io/eslint-plugin-jsonc/rules/sort-keys.html

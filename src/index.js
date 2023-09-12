@@ -1,4 +1,5 @@
 import { base } from "./base.js";
+import { json } from "./json.js";
 
 /**
  * The @connorjs ESLint config.
@@ -6,5 +7,6 @@ import { base } from "./base.js";
  * @type {import("eslint").Linter.FlatConfig[]}
  */
 export default [
+	...json,
 	...base, // Last to apply to all file types
 ];
