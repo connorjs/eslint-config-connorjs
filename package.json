@@ -38,6 +38,7 @@
 		]
 	},
 	"devDependencies": {
+		"@types/eslint": "^8.44.2",
 		"husky": "^8.0.3",
 		"is-ci": "^3.0.1",
 		"lint-staged": "^14.0.1",

@@ -1,7 +1,7 @@
 import prettierConfig from "eslint-config-prettier";
 import eslintComments from "eslint-plugin-eslint-comments";
 
-/** @type {import('./eslint-flat-config').FlatConfig[]} */
+/** @type {import("eslint").Linter.FlatConfig[]} */
 export const base = [
 	{
 		// ESLint linter options (apply to all files)
