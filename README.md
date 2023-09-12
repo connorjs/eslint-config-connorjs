@@ -152,7 +152,9 @@ TS files: `cjs,js,ts,tsx`. _The largest configuration set!_
 
   - `ecmaVersion: latest` because projects use bundlers or other build tools
     to transpile to target versions.
+  
   - Includes isomorphic globals (shared by node and the browser) via [globals]
+  
   - Also see the [@typescript-eslint/parser docs][typescript-eslint-parser]
 
 - 🔧 Configures sorting rules to standardize the order (no need to think or
@@ -160,6 +162,7 @@ TS files: `cjs,js,ts,tsx`. _The largest configuration set!_
   `eslint-disable` at call sites. They are case-insensitive.
 
   - 🔧 [sort-keys]
+  
   - 🔧 [@typescript-eslint/member-ordering][typescript-eslint-member-ordering]
     with required properties first
 
@@ -204,6 +207,7 @@ TS files: `cjs,js,ts,tsx`. _The largest configuration set!_
     I recommend the default configuration instead of creating your own order.
 
   - Includes [eslint-plugin-import] `recommended` rule set.
+  
   - Configures [import/no-default-export][import-no-default-export] to disallow
     default exports.
 
@@ -215,7 +219,7 @@ TS files: `cjs,js,ts,tsx`. _The largest configuration set!_
     1. Naming exports leads to a stronger contract and can help refactoring.
     2. You can use `as` syntax to rename named exports very easily, so the
        supposed benefit of “name default exports whatever you want” has little
-       benefit in practice. (Also see (1).)
+       benefit in practice.
     3. _I want to add more of my reasons, so TODO!_
 
     The ESLint configuration opts-out known configuration files that require
