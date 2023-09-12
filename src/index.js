@@ -3,6 +3,7 @@ import { graphql } from "./graphql.js";
 import { html } from "./html.js";
 import { javascriptAndTypescript } from "./javascript-and-typescript.js";
 import { json } from "./json.js";
+import { react } from "./react.js";
 
 /**
  * The @connorjs ESLint config.
@@ -11,6 +12,7 @@ import { json } from "./json.js";
  */
 const config = [
 	...javascriptAndTypescript,
+	...react,
 	...json,
 	...html,
 	...graphql,

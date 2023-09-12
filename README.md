@@ -26,6 +26,7 @@ Use it directly ([§ Install](#install)) or take inspiration from it
   - [Base rules](#base-rules)
   - [JSON (and JSONC)](#json)
   - [JavaScript and TypeScript](#javascript-and-typescript)
+  - [React](#react)
   - [HTML](#html)
   - [GraphQL](#graphql)
 
@@ -255,6 +256,59 @@ TS files: `cjs,js,ts,tsx`. _The largest configuration set!_
 [typescript-eslint-parser]: https://typescript-eslint.io/packages/parser
 [unicorn-prevent-abbreviations]: https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prevent-abbreviations.md
 [unicorn-string-content]: https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/string-content.md
+
+### React
+
+The [react config](./src/react.js) applies to all typescript files (`ts` and
+`tsx`) and only makes sense to use in a react project.
+
+- Uses [eslint-plugin-jsx-a11y] and its `recommended` rule set.
+
+- Uses [eslint-plugin-react] and its `recommended` and `jsx-runtime` rule sets.
+
+- Uses [eslint-plugin-react-hooks] and its `recommended` rule set.
+
+- Configures [react/destructuring-assignment][react-destructuring-assignment] to
+  disallow destructuring props. (Controversial, I know.)
+
+  I find it harder to update components that use destructuring, plus I think it
+  looks bad with inline types given TypeScript usage.
+
+- Configures [react/forbid-component-props][react-forbid-component-props] to
+  disallow props (example: `style` to disallow inline styles).
+
+- 🔧 Configures [react/function-component-definition][react-function-component-definition]
+  to enforce component definition consistency.
+
+  Uses “function declarations” for named components because they are the only
+  way to support generics in TSX, so using it for consistency. Remember: This
+  will auto-fix.
+
+  Uses “arrow functions” for unnamed components to emphasize unnamed and for
+  nice lambda readability (example: pass to `map`).
+
+- 🔧 Enables [react/hook-use-state][react-hook-use-state] to enforce symmetric
+  naming of the `useState` hook value and setter variables.
+
+- 🔧 Configures [react/jsx-boolean-value][react-jsx-boolean-value] and
+  [react/jsx-curly-brace-presence][react-jsx-curly-brace-presence] to enforce
+  consistent JSX styles. See the code for details.
+
+- Configures the following rules to force a comment explaining the use case.
+  While this may seem like extra work, it helps catch improper usage.
+  - react/jsx-no-leaked-render
+  - react/jsx-props-no-spreading
+  - react/no-array-index-key
+  - react/no-danger
+
+[eslint-plugin-jsx-a11y]: https://github.com/jsx-eslint/eslint-plugin-jsx-a11y#readme
+[eslint-plugin-react]: https://github.com/jsx-eslint/eslint-plugin-react
+[eslint-plugin-react-hooks]: https://www.npmjs.com/package/eslint-plugin-react-hooks
+[react-destructuring-assignment]: https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/destructuring-assignment.md
+[react-forbid-component-props]: https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/forbid-component-props.md
+[react-hook-use-state]: https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/hook-use-state.md
+[react-jsx-boolean-value]: https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/
+[react-jsx-curly-brace-presence]: https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/
 
 ### HTML
 
