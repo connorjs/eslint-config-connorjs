@@ -1,7 +1,7 @@
 {
 	"name": "eslint-config-connorjs",
 	"version": "1.0.0-alpha.0",
-	"description": "My (@connorjs’) preferred ESLint configuration. With ESLint flat config.",
+	"description": "My (@connorjs) preferred ESLint configuration. With ESLint flat config.",
 	"keywords": [
 		"eslint",
 		"eslint-config"

@@ -1,6 +1,6 @@
 # eslint-config-connorjs
 
-My ([@connorjs’][connorjs]) preferred [ESLint][eslint] configuration. With
+My ([@connorjs][connorjs]) preferred [ESLint][eslint] configuration. With
 ESLint flat config.
 
 Use it directly ([§ Install](#install)) or take inspiration from it
