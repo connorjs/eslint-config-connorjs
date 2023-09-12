@@ -1,5 +1,6 @@
 import { base } from "./base.js";
 import { json } from "./json.js";
+import { html } from "./html.js";
 
 /**
  * The @connorjs ESLint config.
@@ -8,5 +9,6 @@ import { json } from "./json.js";
  */
 export default [
 	...json,
+	...html,
 	...base, // Last to apply to all file types
 ];

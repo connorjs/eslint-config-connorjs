@@ -22,6 +22,7 @@ Use it directly ([§ Install](#install)) or take inspiration from it
 - [Rules and reasoning](#rules-and-reasoning)
   - [Base rules](#base-rules)
   - [JSON (and JSONC)](#json)
+  - [HTML](#html)
 
 ## Install
 
@@ -133,3 +134,34 @@ The [JSON config](./src/json.js) applies to all JSON files. It handles JSONC
 [jsonc-eslint-parser]: https://www.npmjs.com/package/jsonc-eslint-parser
 [jsonc-sort-array-values]: https://ota-meshi.github.io/eslint-plugin-jsonc/rules/sort-array-values.html
 [jsonc-sort-keys]: https://ota-meshi.github.io/eslint-plugin-jsonc/rules/sort-keys.html
+
+### HTML
+
+The [HTML config](./src/html.js) applies to all HTML files.
+
+- Powered by [html-eslint] (parser and rules)
+
+- Includes the `recommended` ruleset and accessibility and best practice
+  oriented rules. See the code for details, but some specific call outs follow.
+
+  - [@html-eslint/id-naming-convention][html-eslint-id-naming-convention] to
+    enforce kebab case for `id` naming.
+
+  - [@html-eslint/no-inline-styles][html-eslint-no-inline-styles] to disallow
+    inline styles, mostly for [Content Security Policy (CSP)][mdn-csp] reasons.
+
+    Even if you allow `unsafe-inline` for the CSP, this rule would also require
+    explanations for using inline styles instead of CSS with `eslint-disable`.
+
+  - [@html-eslint/no-skip-heading-levels][html-eslint-no-skip-heading-levels]
+    to disallow skipping heading levels.
+
+  - [@html-eslint/no-target-blank][html-eslint-no-target-blank] to disallow
+    usage of unsafe `target='_blank'`.
+
+[html-eslint]: https://yeonjuan.github.io/html-eslint/
+[html-eslint-id-naming-convention]: https://yeonjuan.github.io/html-eslint/docs/rules/id-naming-convention/
+[html-eslint-no-inline-styles]: https://yeonjuan.github.io/html-eslint/docs/rules/no-inline-styles/
+[html-eslint-no-skip-heading-levels]: https://yeonjuan.github.io/html-eslint/docs/rules/no-skip-heading-levels/
+[html-eslint-no-target-blank]: https://yeonjuan.github.io/html-eslint/docs/rules/no-target-blank/
+[mdn-csp]: https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP
