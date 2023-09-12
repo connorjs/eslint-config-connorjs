@@ -23,6 +23,7 @@ Use it directly ([§ Install](#install)) or take inspiration from it
   - [Base rules](#base-rules)
   - [JSON (and JSONC)](#json)
   - [HTML](#html)
+  - [GraphQL](#graphql)
 
 ## Install
 
@@ -139,7 +140,7 @@ The [JSON config](./src/json.js) applies to all JSON files. It handles JSONC
 
 The [HTML config](./src/html.js) applies to all HTML files.
 
-- Powered by [html-eslint] (parser and rules)
+- Uses [html-eslint].
 
 - Includes the `recommended` ruleset and accessibility and best practice
   oriented rules. See the code for details, but some specific call outs follow.
@@ -165,3 +166,17 @@ The [HTML config](./src/html.js) applies to all HTML files.
 [html-eslint-no-skip-heading-levels]: https://yeonjuan.github.io/html-eslint/docs/rules/no-skip-heading-levels/
 [html-eslint-no-target-blank]: https://yeonjuan.github.io/html-eslint/docs/rules/no-target-blank/
 [mdn-csp]: https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP
+
+### GraphQL
+
+The [GraphQL config](./src/graphql.js) applies to all GraphQL SDL files.
+
+- Uses [@graphql-eslint/eslint-plugin][graphql-eslint].
+
+- Includes the `schema-recommended` ruleset.
+
+- Disables [@graphql-eslint/naming-convention][graphql-eslint-naming-convention]
+  to allow the use of lifecycle style naming (example: `Get*` and `List*`).
+
+[graphql-eslint]: https://the-guild.dev/graphql/eslint/docs
+[graphql-eslint-naming-convention]: https://the-guild.dev/graphql/eslint/rules/naming-convention

@@ -38,6 +38,7 @@
 		]
 	},
 	"dependencies": {
+		"@graphql-eslint/eslint-plugin": "^3.20.1",
 		"@html-eslint/eslint-plugin": "^0.19.1",
 		"@html-eslint/parser": "^0.19.1",
 		"eslint-config-prettier": "^9.0.0",
