@@ -5,7 +5,20 @@ My (@connorjs’) preferred [ESLint][eslint] configuration. With ESLint flat con
 Use it directly ([§ Install](#install)) or take inspiration from it
 ([§ Rules and reasoning](#rules-and-reasoning)).
 
+> 🛑 **IMPORTANT**
+>
+> [eslint-comments/require-description][eslint-comments-require-description]
+> is the single most important rule to configure! Please use it.
+
 [eslint]: https://eslint.org
+[eslint-comments-require-description]: https://mysticatea.github.io/eslint-plugin-eslint-comments/rules/require-description.html
+
+## Table of contents
+
+- [Install](#install)
+- [Project structure](#project-structure)
+- [Rules and reasoning](#rules-and-reasoning)
+  - [Base rules](#base-rules)
 
 ## Install
 
@@ -68,13 +81,9 @@ The [base rules](./src/base.js) apply to all file types.
 
   - [reportUnusedDisableDirectives] to keep code clean and up to date
 
-- Includes [eslint-plugin-eslint-comments] and enforces comment descriptions to
-  document why the code should ignore a configured ESLint rule.
-
-  > 🛑 **IMPORTANT**
-  >
-  > [eslint-comments/require-description][eslint-comments-require-description]
-  > is the single most important rule to configure! Please use it.
+- Includes [eslint-plugin-eslint-comments] and enforces comment descriptions
+  ([eslint-comments/require-description][eslint-comments-require-description])
+  to document why the code should ignore a configured ESLint rule.
 
 - Includes [eslint-config-prettier] to turns off all rules that are unnecessary
   or might conflict with [Prettier][prettier].
@@ -85,7 +94,6 @@ The [base rules](./src/base.js) apply to all file types.
 - Configures the [global ignores][global-ignores].
 
 [eslint-config-prettier]: https://github.com/prettier/eslint-config-prettier/#readme
-[eslint-comments-require-description]: https://mysticatea.github.io/eslint-plugin-eslint-comments/rules/require-description.html
 [eslint-plugin-eslint-comments]: https://mysticatea.github.io/eslint-plugin-eslint-comments/
 [eslint-quotes]: https://eslint.org/docs/latest/rules/quotes
 [global-ignores]: https://eslint.org/docs/latest/use/configure/configuration-files-new#globally-ignoring-files-with-ignores
