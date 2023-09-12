@@ -11,9 +11,12 @@ Use it directly ([§ Install](#install)) or take inspiration from it
 > [eslint-comments/require-description][eslint-comments-require-description]
 > is the single most important rule to configure! Please use it.
 
+> 🟢 **Tip**: I highly recommend [eslint-plugin-unicorn], which my config uses.
+
 [connorjs]: https://github.com/connorjs
 [eslint]: https://eslint.org
 [eslint-comments-require-description]: https://mysticatea.github.io/eslint-plugin-eslint-comments/rules/require-description.html
+[eslint-plugin-unicorn]: https://www.npmjs.com/package/eslint-plugin-unicorn
 
 ## Table of contents
 
@@ -22,6 +25,7 @@ Use it directly ([§ Install](#install)) or take inspiration from it
 - [Rules and reasoning](#rules-and-reasoning)
   - [Base rules](#base-rules)
   - [JSON (and JSONC)](#json)
+  - [JavaScript and TypeScript](#javascript-and-typescript)
   - [HTML](#html)
   - [GraphQL](#graphql)
 
@@ -116,12 +120,15 @@ The [JSON config](./src/json.js) applies to all JSON files. It handles JSONC
   It does not lint `package-lock.json`.
 
 - Includes [eslint-plugin-jsonc] and registers its `recommended-with-json` and
-  `prettier` rule sets. Configures two sorting rules for all JSON files.
+  `prettier` rule sets.
 
-  - 🔧 [jsonc/sort-array-values][jsonc-sort-array-values] to standardize the
-    array member order (no need to think or worry about the “best” order) and
-    reduces merge conflicts. Feel free to `eslint-disable` at call sites.
-  - 🔧 [jsonc/sort-keys][jsonc-sort-keys] sorts the keys.
+- 🔧 Configures sorting rules to standardize the order (no need to think or
+  worry about the “best” order) and reduces merge conflicts. Feel free to
+  `eslint-disable` at call sites.
+
+  - 🔧 [jsonc/sort-array-values][jsonc-sort-array-values]
+
+  - 🔧 [jsonc/sort-keys][jsonc-sort-keys]
 
 - Allows comments in JSONC and JSONC-like files (for example, `tsconfig.json`).
 
@@ -135,6 +142,115 @@ The [JSON config](./src/json.js) applies to all JSON files. It handles JSONC
 [jsonc-eslint-parser]: https://www.npmjs.com/package/jsonc-eslint-parser
 [jsonc-sort-array-values]: https://ota-meshi.github.io/eslint-plugin-jsonc/rules/sort-array-values.html
 [jsonc-sort-keys]: https://ota-meshi.github.io/eslint-plugin-jsonc/rules/sort-keys.html
+
+### JavaScript and TypeScript
+
+The [JS and TS config](./src/javascript-and-typescript.js) applies to all JS and
+TS files: `cjs,js,ts,tsx`. _The largest configuration set!_
+
+- Configures language options.
+
+  - `ecmaVersion: latest` because projects use bundlers or other build tools
+    to transpile to target versions.
+  - Includes isomorphic globals (shared by node and the browser) via [globals]
+  - Also see the [@typescript-eslint/parser docs][typescript-eslint-parser]
+
+- 🔧 Configures sorting rules to standardize the order (no need to think or
+  worry about the “best” order) and reduces merge conflicts. Feel free to
+  `eslint-disable` at call sites. They are case-insensitive.
+
+  - 🔧 [sort-keys]
+  - 🔧 [@typescript-eslint/member-ordering][typescript-eslint-member-ordering]
+    with required properties first
+
+- Includes [@eslint/js][eslint-js] `recommended` rule set.
+
+- Includes [eslint-plugin-sonarjs] `recommended` rule set.
+
+- Includes [eslint-plugin-unicorn] `recommended` rule set and configures
+  additional rules from unicorn. Some specific call outs follow.
+
+  - 🔧 Configures an allow list for [][unicorn-prevent-abbreviations] to allow some
+    abbreviations. Example: Allow `props`, which React commonly uses.
+
+  - 🔧 Configures patterns for [unicorn/string-content][unicorn-string-content]
+    to enforce better string content. Example: Use unicode arrow `→` instead of
+    hyphen and greater than (`->`).
+
+    The auto-fix feature makes this rule very useful. See the source code for
+    a “smart quotes” pattern.
+
+- Uses [@typescript-eslint][typescript-eslint] and includes its
+  `recommended-type-checked` and `stylistic-type-checked` rule sets.
+
+  - 🔧 Configures [@typescript-eslint/consistent-type-definitions][typescript-eslint-consistent-type-definitions]
+    to enforce using `type` instead of `interface` (as the default).
+
+    Interfaces use declaration merging, which I do not recommend as the default.
+    See the [_Differences Between Type Aliases and
+    Interfaces_ documentation][type-vs-interface].
+
+  - 🔧 Configures [@typescript-eslint/no-non-null-assertion][typescript-eslint-no-non-null-assertion]
+    to require a comment via `eslint-disable` when needed. It allows non-null
+    assertions in test files.
+
+- Uses [eslint-plugin-simple-import-sort] and [eslint-plugin-import] to
+  configure import rules. Some specific call outs follow.
+
+  - 🔧 Includes simple-import-sort/imports and simple-import-sort/exports to
+    sort the imports and re-exports. See the [Sort order
+    docs][eslint-plugin-simple-import-sort-sort-order].
+
+    I recommend the default configuration instead of creating your own order.
+
+  - Includes [eslint-plugin-import] `recommended` rule set.
+  - Configures [import/no-default-export][import-no-default-export] to disallow
+    default exports.
+
+    I have experienced various issues resulting from default exports over the
+    years, so I strongly recommend configuring this rule. You can always
+    `eslint-disable` at the call site when you need it and explain why (example:
+    dynamic imports for React code-splitting point).
+
+    1. Naming exports leads to a stronger contract and can help refactoring.
+    2. You can use `as` syntax to rename named exports very easily, so the
+       supposed benefit of “name default exports whatever you want” has little
+       benefit in practice. (Also see (1).)
+    3. _I want to add more of my reasons, so TODO!_
+
+    The ESLint configuration opts-out known configuration files that require
+    default exports (example: storybook files).
+
+  - Configures [import/no-anonymous-default-export][import-no-anonymous-default-export]
+    to disallow anonymous default exports in the case that you `eslint-disable`
+    the `import/no-default-export` rule.
+
+  - 🔧 Uses [@typescript-eslint/consistent-type-imports][typescript-eslint-consistent-type-imports]
+    and [import/consistent-type-specifier-style][import-consistent-type-specifier-style]
+    to enforce consistent usage of type imports.
+
+    We need both rules for best fix-it developer experience: one to add `type`
+    and the other to fix the placement.
+
+[eslint-js]: https://www.npmjs.com/package/@eslint/js
+[eslint-plugin-import]: https://github.com/import-js/eslint-plugin-import#readme
+[eslint-plugin-simple-import-sort]: https://github.com/lydell/eslint-plugin-simple-import-sort#readme
+[eslint-plugin-simple-import-sort-sort-order]: https://github.com/lydell/eslint-plugin-simple-import-sort#sort-order
+[eslint-plugin-sonarjs]: https://www.npmjs.com/package/eslint-plugin-sonarjs
+[globals]: https://www.npmjs.com/package/globals
+[import-consistent-type-specifier-style]: https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/consistent-type-specifier-style.md
+[import-no-anonymous-default-export]: https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/no-anonymous-default-export.md
+[import-no-default-export]: https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/no-default-export.md
+[sort-keys]: https://eslint.org/docs/latest/rules/sort-keys
+[type-vs-interface]: https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#differences-between-type-aliases-and-interfaces
+[typescript-eslint]: https://typescript-eslint.io
+[typescript-eslint-consistent-type-definitions]: https://typescript-eslint.io/rules/consistent-type-definitions/
+[typescript-eslint-consistent-type-imports]: https://typescript-eslint.io/rules/consistent-type-imports/
+[typescript-eslint-member-ordering]: https://typescript-eslint.io/rules/member-ordering/
+[typescript-eslint-no-non-null-assertion]: https://typescript-eslint.io/rules/no-non-null-assertion/
+[typescript-eslint-parser]: https://typescript-eslint.io/packages/parser
+[unicorn-prevent-abbreviations]: https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prevent-abbreviations.md
+[unicorn-string-content]: https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/string-content.md
 
 ### HTML
 

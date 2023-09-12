@@ -1,3 +1,1 @@
-import connorjsConfig from "./src/index.js";
-
-export default [...connorjsConfig];
+export { default } from "./src/index.js";
