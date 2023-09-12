@@ -1,6 +1,7 @@
 # eslint-config-connorjs
 
-My (@connorjs’) preferred [ESLint][eslint] configuration. With ESLint flat config.
+My ([@connorjs’][connorjs]) preferred [ESLint][eslint] configuration. With
+ESLint flat config.
 
 Use it directly ([§ Install](#install)) or take inspiration from it
 ([§ Rules and reasoning](#rules-and-reasoning)).
@@ -10,6 +11,7 @@ Use it directly ([§ Install](#install)) or take inspiration from it
 > [eslint-comments/require-description][eslint-comments-require-description]
 > is the single most important rule to configure! Please use it.
 
+[connorjs]: https://github.com/connorjs
 [eslint]: https://eslint.org
 [eslint-comments-require-description]: https://mysticatea.github.io/eslint-plugin-eslint-comments/rules/require-description.html
 
@@ -78,9 +80,9 @@ The 🔧 emoji indicates that configured rules are automatically fixable with
 
 The [base rules config](./src/base.js) apply to all file types.
 
-- Configures ESLint linter options
+- Configures ESLint linter options.
 
-  - [reportUnusedDisableDirectives] to keep code clean and up to date
+  - [reportUnusedDisableDirectives] to keep code clean and up to date.
 
 - Includes [eslint-plugin-eslint-comments] and enforces comment descriptions
   ([eslint-comments/require-description][eslint-comments-require-description])
@@ -107,23 +109,25 @@ The [JSON config](./src/json.js) applies to all JSON files. It handles JSONC
 (JSON with comments) and JSONC-like files.
 
 - Configures [jsonc-eslint-parser] as the parser for the `.json` and `.jsonc`
-  files. (It does not lint `package-lock.json`.)
+  files.
 
-- Includes [eslint-plugin-jsonc] and registers its recommended and prettier
-  rule sets. Configures two sorting rules for all JSON files.
+  It does not lint `package-lock.json`.
+
+- Includes [eslint-plugin-jsonc] and registers its `recommended-with-json` and
+  `prettier` rule sets. Configures two sorting rules for all JSON files.
 
   - 🔧 [jsonc/sort-array-values][jsonc-sort-array-values] to standardize the
     array member order (no need to think or worry about the “best” order) and
     reduces merge conflicts. Feel free to `eslint-disable` at call sites.
-  - 🔧 [jsonc/sort-keys][jsonc-sort-keys] sorts the keys
+  - 🔧 [jsonc/sort-keys][jsonc-sort-keys] sorts the keys.
 
-- Allows comments in JSONC and JSONC-like files (for example, `tsconfig.json`)
+- Allows comments in JSONC and JSONC-like files (for example, `tsconfig.json`).
 
 - 🔧 Configures an explicit sort order for `package.json` keys. See the code for
   details.
 
-  This overrides the previous jsonc/sort-keys configuration. You can configure
-  specific sort orders for other files using similar logic.
+  > 🔷 **Note**: This overrides the previous jsonc/sort-keys configuration. You
+  > can configure specific sort orders for other files using similar logic.
 
 [eslint-plugin-jsonc]: https://ota-meshi.github.io/eslint-plugin-jsonc/
 [jsonc-eslint-parser]: https://www.npmjs.com/package/jsonc-eslint-parser
