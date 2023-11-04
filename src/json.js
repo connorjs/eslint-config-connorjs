@@ -25,7 +25,12 @@ export const json = [
 	},
 	{
 		// These allow comments (a.k.a. JSONC files)
-		files: [`**/tsconfig*.json`, `**/turbo.json`, `**/*.jsonc`],
+		files: [
+			`**/global.json`,
+			`**/tsconfig*.json`,
+			`**/turbo.json`,
+			`**/*.jsonc`,
+		],
 		rules: { "jsonc/no-comments": `off` },
 	},
 	{
