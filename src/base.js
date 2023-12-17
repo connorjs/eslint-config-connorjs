@@ -7,7 +7,7 @@ export const base = [
 		// ESLint linter options (apply to all files)
 		// https://eslint.org/docs/latest/use/configure/configuration-files-new#configuring-linter-options
 		linterOptions: {
-			reportUnusedDisableDirectives: true,
+			reportUnusedDisableDirectives: `error`,
 		},
 	},
 	{
@@ -22,12 +22,15 @@ export const base = [
 	{
 		// Use template literals to allow easier change to interpolation.
 		// This MUST follow prettier.
-		files: [`**/*.{cjs,js,ts,tsx}`],
+		files: [`**/*.{cjs,cts,js,jsx,ts,tsx}`],
 		rules: { quotes: [`error`, `backtick`, { avoidEscape: true }] },
 	},
 	{
 		// Global ignores. Related to `.gitignore`
 		// https://eslint.org/docs/latest/use/configure/configuration-files-new#globally-ignoring-files-with-ignores
-		ignores: [`**/{build,coverage,dist,generated,.turbo}`, `**/*.generated.*`],
+		ignores: [
+			`**/{build,coverage,dist,generated,.nx,.turbo}`,
+			`**/*.generated.*`,
+		],
 	},
 ];

@@ -7,8 +7,8 @@ import sonarjs from "eslint-plugin-sonarjs";
 import unicorn from "eslint-plugin-unicorn";
 import globals from "globals";
 
-const jsAndTsExtensions = `{cjs,js,ts,tsx}`;
-const tsOnlyExtensions = `{ts,tsx}`;
+const jsAndTsExtensions = `{cjs,cts,js,jsx,ts,tsx}`;
+const tsOnlyExtensions = `{cts,ts,tsx}`;
 
 // https://typescript-eslint.io/rules/member-ordering/#default-configuration
 const defaultMemberOrder =
