@@ -114,6 +114,12 @@ export const javascriptAndTypescript = [
 				},
 			],
 			"@typescript-eslint/no-non-null-assertion": `error`, // Require comment
+
+			// Relax the recommended rule to allow `||` for strings (handle empty string)
+			"@typescript-eslint/prefer-nullish-coalescing": [
+				`error`,
+				{ ignorePrimitives: { string: true } },
+			],
 		},
 	},
 	{

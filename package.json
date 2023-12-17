@@ -1,6 +1,6 @@
 {
 	"name": "eslint-config-connorjs",
-	"version": "1.0.0-alpha.1",
+	"version": "1.0.0-alpha.2",
 	"description": "My (@connorjs) preferred ESLint configuration. With ESLint flat config.",
 	"keywords": [
 		"eslint",
@@ -17,6 +17,9 @@
 		"url": "https://github.com/connorjs"
 	},
 	"type": "module",
+	"engines": {
+		"node": ">=16"
+	},
 	"files": [
 		"src"
 	],
