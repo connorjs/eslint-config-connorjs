@@ -38,7 +38,7 @@ export const json = [
 		files: [`**/package.json`],
 		rules: {
 			"jsonc/sort-keys": [
-				`error`,
+				`warn`, // warn because nothing is “wrong” and this config may change often
 				{
 					// Defines order of root properties
 					order: [
@@ -46,24 +46,43 @@ export const json = [
 						`version`,
 						`description`,
 						`private`,
+
+						// Additional publish info
 						`keywords`,
 						`homepage`,
 						`bugs`,
 						`license`,
 						`author`,
+						`repository`,
+						// End publish info
+
 						`type`,
-						`engines`,
+						`engines`, // Often used for ESM, so relates to `type`
+
+						// Export fields
 						`bin`,
 						`directories`,
 						`files`,
 						`exports`,
+						// End export fields
+
 						`scripts`,
+						// Tool-specific directly after scripts, alphabetical
+						`browserslist`,
 						`eslint`,
 						`lint-staged`,
+						// End tool-specific
+
+						// Dependency related, specific order
+						`engineStrict`,
 						`overrides`, // Overrides before dependencies to emphasize their existence
+						`optionalDependencies`,
 						`peerDependencies`,
+						`peerDependenciesMeta`,
 						`dependencies`,
 						`devDependencies`,
+						// End dependency related
+
 						`workspaces`,
 						{ order: { type: `desc` } }, // Force other properties to go last
 					],

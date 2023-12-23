@@ -1,6 +1,6 @@
 {
 	"name": "eslint-config-connorjs",
-	"version": "1.0.0-alpha.3",
+	"version": "1.0.0-alpha.4",
 	"description": "My (@connorjs) preferred ESLint configuration. With ESLint flat config.",
 	"keywords": [
 		"eslint",
@@ -32,6 +32,7 @@
 		"lint": "eslint .",
 		"lint:fix": "eslint . --fix",
 		"prepare": "is-ci || husky install",
+		"prepublishOnly": "npm run release",
 		"release": "npm run format && npm run lint"
 	},
 	"lint-staged": {
@@ -43,6 +44,11 @@
 	"peerDependencies": {
 		"eslint": ">=8.56.0",
 		"graphql": "*"
+	},
+	"peerDependenciesMeta": {
+		"graphql": {
+			"optional": true
+		}
 	},
 	"dependencies": {
 		"@eslint/js": "^8.56.0",
