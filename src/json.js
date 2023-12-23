@@ -14,12 +14,6 @@ export const json = [
 		rules: {
 			...jsoncPlugin.configs[`recommended-with-json`].rules,
 			...jsoncPlugin.configs.prettier.rules,
-			// Standardizes order (no need to think or worry about the “best” order)
-			// and reduces merge conflicts. Feel free to `eslint-disable`.
-			"jsonc/sort-array-values": [
-				`error`,
-				{ order: { type: `asc` }, pathPattern: `.*` },
-			],
 			"jsonc/sort-keys": `error`, // Specify per-file orders as needed (below)
 		},
 	},
