@@ -90,8 +90,11 @@ export const javascriptAndTypescript = tseslint.config(
 			],
 		},
 	},
+	// TypeScript-specific rules
+	...restrictToTsExtensions(tseslint.configs.recommendedTypeChecked),
+	...restrictToTsExtensions(tseslint.configs.stylisticTypeChecked),
 	{
-		// TypeScript-specific rules
+		// TypeScript-specific rules continued
 		files: [`**/*.${tsOnlyExtensions}`],
 		plugins: {
 			"@typescript-eslint": tseslint.plugin,
@@ -118,8 +121,6 @@ export const javascriptAndTypescript = tseslint.config(
 			],
 		},
 	},
-	...restrictToTsExtensions(tseslint.configs.recommendedTypeChecked),
-	...restrictToTsExtensions(tseslint.configs.stylisticTypeChecked),
 	{
 		// Dedicated import configuration
 		files: [`**/*.${jsAndTsExtensions}`],
