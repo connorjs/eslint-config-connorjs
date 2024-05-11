@@ -8,7 +8,7 @@ import { react } from "./react.js";
 /**
  * The @connorjs ESLint config.
  *
- * @type {import("eslint").Linter.FlatConfig[]}
+ * @type {import('@typescript-eslint/utils').TSESLint.FlatConfig.ConfigFile}
  */
 const config = [
 	...javascriptAndTypescript,

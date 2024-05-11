@@ -32,10 +32,6 @@ Use it directly ([§ Install](#install)) or take inspiration from it
 
 ## Install
 
-> 🟧 **TODO**
->
-> Confirm installation before publishing
-
 1. Add the dependency
 
    ```shell

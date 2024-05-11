@@ -1,6 +1,6 @@
 {
 	"name": "eslint-config-connorjs",
-	"version": "1.0.0-alpha.5",
+	"version": "1.0.0-alpha.6",
 	"description": "My (@connorjs) preferred ESLint configuration. With ESLint flat config.",
 	"keywords": [
 		"eslint",
@@ -18,65 +18,63 @@
 	},
 	"type": "module",
 	"engines": {
-		"node": ">=16"
+		"node": "^18.18.0 || >=20.0.0"
 	},
 	"files": [
 		"src"
 	],
 	"exports": {
-		".": "./src/index.js"
+		".": "./src/export.js"
 	},
 	"scripts": {
-		"format": "prettier -l '**/*.{cjs,js,json}'",
-		"format:fix": "npm run format -- -w",
-		"lint": "eslint .",
-		"lint:fix": "eslint . --fix",
-		"prepare": "is-ci || husky install",
+		"ci-build": "npm run prettier && npm run eslint",
+		"eslint": "eslint -f pretty .",
+		"eslint:fix": "npm run eslint -- --fix",
+		"prepare": "is-ci || husky husky",
 		"prepublishOnly": "npm run release",
-		"release": "npm run format && npm run lint"
-	},
-	"lint-staged": {
-		"**/*.{cjs,js,json}": [
-			"eslint --fix",
-			"prettier -w"
-		]
+		"prettier": "prettier -c '**/*.{cjs,js,json}'",
+		"prettier:fix": "npm run prettier -- -w"
 	},
 	"peerDependencies": {
-		"eslint": ">=8.56.0",
-		"graphql": "*"
+		"eslint": "^8.56.0",
+		"graphql": "*",
+		"typescript": ">=4.7.4"
 	},
 	"peerDependenciesMeta": {
 		"graphql": {
 			"optional": true
+		},
+		"typescript": {
+			"optional": true
 		}
 	},
 	"dependencies": {
-		"@eslint/js": "^8.56.0",
+		"@eslint/js": "^8.57.0",
 		"@graphql-eslint/eslint-plugin": "^3.20.1",
-		"@html-eslint/eslint-plugin": "^0.22.0",
-		"@html-eslint/parser": "^0.22.0",
-		"@typescript-eslint/eslint-plugin": "^6.14.0",
-		"@typescript-eslint/parser": "^6.14.0",
+		"@html-eslint/eslint-plugin": "~0.24.1",
+		"@html-eslint/parser": "~0.24.1",
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-eslint-comments": "^3.2.0",
 		"eslint-plugin-import": "^2.29.1",
-		"eslint-plugin-jsonc": "^2.11.1",
+		"eslint-plugin-jsonc": "^2.15.1",
 		"eslint-plugin-jsx-a11y": "^6.8.0",
-		"eslint-plugin-react": "^7.33.2",
-		"eslint-plugin-react-hooks": "^4.6.0",
-		"eslint-plugin-simple-import-sort": "^10.0.0",
-		"eslint-plugin-sonarjs": "^0.23.0",
-		"eslint-plugin-unicorn": "^49.0.0",
-		"globals": "^13.24.0",
-		"jsonc-eslint-parser": "^2.4.0"
+		"eslint-plugin-react": "^7.34.1",
+		"eslint-plugin-react-hooks": "^4.6.2",
+		"eslint-plugin-simple-import-sort": "^12.1.0",
+		"eslint-plugin-sonarjs": "^1.0.3",
+		"eslint-plugin-unicorn": "^53.0.0",
+		"globals": "^15.2.0",
+		"jsonc-eslint-parser": "^2.4.0",
+		"typescript-eslint": "^7.8.0"
 	},
 	"devDependencies": {
-		"@types/eslint": "^8.44.9",
-		"eslint": "^8.56.0",
+		"@types/eslint": "^8.56.10",
+		"eslint": "^8.57.0",
+		"eslint-formatter-pretty": "^6.0.1",
 		"graphql": "^16.8.1",
-		"husky": "^8.0.3",
+		"husky": "^9.0.11",
 		"is-ci": "^3.0.1",
-		"lint-staged": "^15.2.0",
-		"prettier": "^3.1.1"
+		"lint-staged": "^15.2.2",
+		"prettier": "^3.2.5"
 	}
 }

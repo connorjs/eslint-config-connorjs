@@ -1,8 +1,8 @@
 import prettierConfig from "eslint-config-prettier";
 import eslintComments from "eslint-plugin-eslint-comments";
+import tseslint from "typescript-eslint";
 
-/** @type {import("eslint").Linter.FlatConfig[]} */
-export const base = [
+export const base = tseslint.config(
 	{
 		// ESLint linter options (apply to all files)
 		// https://eslint.org/docs/latest/use/configure/configuration-files-new#configuring-linter-options
@@ -33,4 +33,4 @@ export const base = [
 			`**/*.generated.*`,
 		],
 	},
-];
+);

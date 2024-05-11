@@ -1,8 +1,8 @@
 import jsoncPlugin from "eslint-plugin-jsonc";
 import jsoncParser from "jsonc-eslint-parser";
+import tseslint from "typescript-eslint";
 
-/** @type {import("eslint").Linter.FlatConfig[]} */
-export const json = [
+export const json = tseslint.config(
 	{
 		// JSON files
 		files: [`**/*.{json,jsonc}`],
@@ -87,4 +87,4 @@ export const json = [
 			],
 		},
 	},
-];
+);
