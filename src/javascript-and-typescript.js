@@ -11,9 +11,10 @@ const tsOnlyExtensions = `{cts,ts,tsx}`;
 
 // https://typescript-eslint.io/rules/member-ordering/#default-configuration
 const defaultMemberOrder =
-	tseslint.plugin.rules[`member-ordering`].defaultOptions[0].default;
+	tseslint.plugin.rules[`member-ordering`].defaultOptions[0].default
+		.memberTypes;
 
-/** @type {import('@typescript-eslint/utils').TSESLint.FlatConfig.Config} */
+/** @type {import("eslint").Linter.FlatConfig<import("@typescript-eslint/utils").ParserOptions>} */
 const tsLanguageOptions = {
 	files: [`**/*.${tsOnlyExtensions}`],
 	languageOptions: {
@@ -96,8 +97,6 @@ export const javascriptAndTypescript = tseslint.config(
 			"@typescript-eslint": tseslint.plugin,
 		},
 		rules: {
-			...tseslint.configs.recommendedTypeChecked,
-			...tseslint.configs.stylisticTypeChecked,
 			"@typescript-eslint/consistent-type-definitions": [`error`, `type`], // Prefer type!
 			// Also see `sort-keys`.
 			"@typescript-eslint/member-ordering": [
@@ -119,6 +118,8 @@ export const javascriptAndTypescript = tseslint.config(
 			],
 		},
 	},
+	...restrictToTsExtensions(tseslint.configs.recommendedTypeChecked),
+	...restrictToTsExtensions(tseslint.configs.stylisticTypeChecked),
 	{
 		// Dedicated import configuration
 		files: [`**/*.${jsAndTsExtensions}`],
@@ -189,3 +190,17 @@ export const javascriptAndTypescript = tseslint.config(
 		},
 	},
 );
+
+/**
+ * Restrict `typescript-eslint` config to TS extensions.
+ *
+ * @param config {import("typescript-eslint").TSESLint.FlatConfig.ConfigArray}
+ *
+ * @returns {import("typescript-eslint").TSESLint.FlatConfig.ConfigArray} modified configs.
+ */
+function restrictToTsExtensions(config) {
+	return config.map((config) => ({
+		files: [`**/*.${tsOnlyExtensions}`],
+		...config,
+	}));
+}

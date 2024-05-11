@@ -1,6 +1,6 @@
 {
 	"name": "eslint-config-connorjs",
-	"version": "1.0.0-alpha.6",
+	"version": "1.0.0-alpha.7",
 	"description": "My (@connorjs) preferred ESLint configuration. With ESLint flat config.",
 	"keywords": [
 		"eslint",
@@ -31,7 +31,7 @@
 		"eslint": "eslint -f pretty .",
 		"eslint:fix": "npm run eslint -- --fix",
 		"prepare": "is-ci || husky husky",
-		"prepublishOnly": "npm run release",
+		"prepublishOnly": "npm run ci-build",
 		"prettier": "prettier -c '**/*.{cjs,js,json}'",
 		"prettier:fix": "npm run prettier -- -w"
 	},
