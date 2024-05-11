@@ -1,36 +1,33 @@
 import js from "@eslint/js";
-import typescriptPlugin from "@typescript-eslint/eslint-plugin";
-import typescriptParser from "@typescript-eslint/parser";
 import importPlugin from "eslint-plugin-import";
 import simpleImportSort from "eslint-plugin-simple-import-sort";
 import sonarjs from "eslint-plugin-sonarjs";
 import unicorn from "eslint-plugin-unicorn";
 import globals from "globals";
+import tseslint from "typescript-eslint";
 
 const jsAndTsExtensions = `{cjs,cts,js,jsx,ts,tsx}`;
 const tsOnlyExtensions = `{cts,ts,tsx}`;
 
 // https://typescript-eslint.io/rules/member-ordering/#default-configuration
 const defaultMemberOrder =
-	typescriptPlugin.rules[`member-ordering`].defaultOptions[0].default;
+	tseslint.plugin.rules[`member-ordering`].defaultOptions[0].default;
 
-/** @type {import("eslint").Linter.FlatConfig<import("@typescript-eslint/parser").ParserOptions>} */
+/** @type {import('@typescript-eslint/utils').TSESLint.FlatConfig.Config} */
 const tsLanguageOptions = {
 	files: [`**/*.${tsOnlyExtensions}`],
 	languageOptions: {
 		// https://typescript-eslint.io/packages/parser
-		parser: typescriptParser,
+		parser: tseslint.parser,
 		parserOptions: {
 			ecmaVersion: `latest`,
 			project: true, // Uses nearest tsconfig
 			sourceType: `module`,
-			// tsconfigRootDir: root-dir, // You need to configure TS root dir
 		},
 	},
 };
 
-/** @type {import("eslint").Linter.FlatConfig[]} */
-export const javascriptAndTypescript = [
+export const javascriptAndTypescript = tseslint.config(
 	tsLanguageOptions,
 	{
 		// General rules (JS + TS)
@@ -96,11 +93,11 @@ export const javascriptAndTypescript = [
 		// TypeScript-specific rules
 		files: [`**/*.${tsOnlyExtensions}`],
 		plugins: {
-			"@typescript-eslint": typescriptPlugin,
+			"@typescript-eslint": tseslint.plugin,
 		},
 		rules: {
-			...typescriptPlugin.configs[`recommended-type-checked`].rules,
-			...typescriptPlugin.configs[`stylistic-type-checked`].rules,
+			...tseslint.configs.recommendedTypeChecked,
+			...tseslint.configs.stylisticTypeChecked,
 			"@typescript-eslint/consistent-type-definitions": [`error`, `type`], // Prefer type!
 			// Also see `sort-keys`.
 			"@typescript-eslint/member-ordering": [
@@ -175,10 +172,13 @@ export const javascriptAndTypescript = [
 		// Allow default export for configuration files that must use it
 		files: [
 			`**/*.config.{js,ts}`,
-			`**/.storybook/*.{js,ts}`,
+			`**/{,.}storybook/*.{js,ts}`, // Allow non-hidden, too
 			`**/*.stories.tsx`,
 		],
-		rules: { "import/no-default-export": `off` },
+		rules: {
+			"import/no-anonymous-default-export": `off`,
+			"import/no-default-export": `off`,
+		},
 	},
 	{
 		// TS-specific test rules
@@ -188,4 +188,4 @@ export const javascriptAndTypescript = [
 			"@typescript-eslint/no-non-null-assertion": `off`,
 		},
 	},
-];
+);
