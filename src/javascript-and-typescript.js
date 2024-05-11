@@ -201,7 +201,7 @@ export const javascriptAndTypescript = tseslint.config(
  */
 function restrictToTsExtensions(config) {
 	return config.map((config) => ({
-		files: [`**/*.${tsOnlyExtensions}`],
 		...config,
+		files: [`**/*.${tsOnlyExtensions}`],
 	}));
 }
