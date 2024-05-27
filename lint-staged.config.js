@@ -1,3 +1,3 @@
 export default {
-	"**/*.{cjs,js,json}": [`eslint --fix`, `prettier -w`],
+	"**/*.{cjs,js,json,yaml}": [`eslint --fix`, `prettier -w`],
 };
