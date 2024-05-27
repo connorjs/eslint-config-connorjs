@@ -48,6 +48,7 @@ export const json = tseslint.config(
 						`license`,
 						`author`,
 						`repository`,
+						`publishConfig`,
 						// End publish info
 
 						`type`,
