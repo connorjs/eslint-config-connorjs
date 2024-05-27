@@ -16,6 +16,10 @@
 		"name": "Connor Sullivan",
 		"url": "https://github.com/connorjs"
 	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/connorjs/eslint-config-connorjs"
+	},
 	"type": "module",
 	"engines": {
 		"node": "^18.18.0 || >=20.0.0"
