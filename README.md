@@ -214,7 +214,7 @@ TS files: `cjs,js,ts,tsx`. _The largest configuration set!_
 [@typescript-eslint/consistent-type-definitions]: https://typescript-eslint.io/rules/consistent-type-definitions/
 [@typescript-eslint/consistent-type-imports]: https://typescript-eslint.io/rules/consistent-type-imports/
 [@typescript-eslint/member-ordering]: https://typescript-eslint.io/rules/member-ordering/
-[@typescript-eslint/no-non-null-assertion]]: https://typescript-eslint.io/rules/no-non-null-assertion/
+[@typescript-eslint/no-non-null-assertion]: https://typescript-eslint.io/rules/no-non-null-assertion/
 [@typescript-eslint/parser]: https://typescript-eslint.io/packages/parser
 [unicorn/prevent-abbreviations]: https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/prevent-abbreviations.md
 [unicorn/string-content]: https://github.com/sindresorhus/eslint-plugin-unicorn/blob/main/docs/rules/string-content.md
