@@ -68,8 +68,7 @@ export const javascriptAndTypescript = tseslint.config(
 				{
 					/* eslint-disable unicorn/string-content -- Configuring this rule */
 					patterns: {
-						// The quote items can cause controversy, so I’ve
-						// commented out by default.
+						// The quote items can cause controversy, so I’ve commented out by default.
 						//
 						// '"': {
 						// 	fix: false, // Should not fix quotes
