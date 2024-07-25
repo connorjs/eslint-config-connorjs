@@ -54,11 +54,11 @@ To learn more about ESLint flat config, check out the [blog posts][eslint-flat-c
 
 ## Project structure
 
-The [src](./lib) directory contains the ESLint configuration files.
+The [lib](./lib) directory contains the ESLint configuration files.
 It groups them by “use case.”
 A use case could represent an entire language (`html` or `json` for example) or a tool (`react` or `vitest`).
 
-Splitting by use case helps copying desired configuration or building a functional form of the ESLint config.
+Splitting by use case helps to copy desired configuration or building a functional form of the ESLint config.
 (See [Sheriff] for an example of the functional form.)
 
 [Sheriff]: https://github.com/AndreaPontrandolfo/sheriff#readme
