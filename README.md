@@ -26,7 +26,6 @@ Use it directly ([§ Install](#install)) or take inspiration from it ([§ Rule
   - [JavaScript and TypeScript](#javascript-and-typescript)
   - [React](#react)
   - [HTML](#html)
-  - [GraphQL](#graphql)
 
 ## Install
 
@@ -55,11 +54,11 @@ To learn more about ESLint flat config, check out the [blog posts][eslint-flat-c
 
 ## Project structure
 
-The [src](./src) directory contains the ESLint configuration files.
+The [lib](./lib) directory contains the ESLint configuration files.
 It groups them by “use case.”
 A use case could represent an entire language (`html` or `json` for example) or a tool (`react` or `vitest`).
 
-Splitting by use case helps copying desired configuration or building a functional form of the ESLint config.
+Splitting by use case helps to copy desired configuration or building a functional form of the ESLint config.
 (See [Sheriff] for an example of the functional form.)
 
 [Sheriff]: https://github.com/AndreaPontrandolfo/sheriff#readme
@@ -70,11 +69,11 @@ The remainder of the README discusses the rules, configurations, and plugins use
 
 The 🔧 emoji indicates that configured rules are automatically fixable with `--fix`.
 
-> 🟢 **Tip**: The [source code](./src) has inline comments that may provide more detail.
+> 🟢 **Tip**: The [source code](./lib) has inline comments that may provide more detail.
 
 ### Base rules
 
-The [base rules config](./src/base.js) apply to all file types.
+The [base rules config](lib/base.js) apply to all file types.
 
 - Configures ESLint linter options.
 
@@ -97,7 +96,7 @@ The [base rules config](./src/base.js) apply to all file types.
 
 ### JSON
 
-The [JSON config](./src/json.js) applies to all JSON files. It handles JSONC (JSON with comments) and JSONC-like files.
+The [JSON config](lib/json.js) applies to all JSON files. It handles JSONC (JSON with comments) and JSONC-like files.
 
 - Configures [jsonc-eslint-parser] as the parser for the `.json` and `.jsonc` files.
 
@@ -127,7 +126,7 @@ The [JSON config](./src/json.js) applies to all JSON files. It handles JSONC (JS
 
 ### JavaScript and TypeScript
 
-The [JS and TS config](./src/javascript-and-typescript.js) applies to all JS and
+The [JS and TS config](lib/javascript-and-typescript.js) applies to all JS and
 TS files: `cjs,js,ts,tsx`. _The largest configuration set!_
 
 - Configures language options.
@@ -221,7 +220,7 @@ TS files: `cjs,js,ts,tsx`. _The largest configuration set!_
 
 ### React
 
-The [react config](./src/react.js) applies to all typescript files (`ts` and `tsx`) and only makes sense to use in a React project.
+The [react config](lib/react.js) applies to all typescript files (`ts` and `tsx`) and only makes sense to use in a React project.
 
 - Uses [eslint-plugin-jsx-a11y] and its `recommended` rule set.
 
@@ -267,7 +266,7 @@ The [react config](./src/react.js) applies to all typescript files (`ts` and `ts
 
 ### HTML
 
-The [HTML config](./src/html.js) applies to all HTML files.
+The [HTML config](lib/html.js) applies to all HTML files.
 
 - Uses [html-eslint].
 
@@ -290,16 +289,3 @@ The [HTML config](./src/html.js) applies to all HTML files.
 [@html-eslint/no-skip-heading-levels]: https://yeonjuan.github.io/html-eslint/docs/rules/no-skip-heading-levels/
 [@html-eslint/no-target-blank]: https://yeonjuan.github.io/html-eslint/docs/rules/no-target-blank/
 [mdn-csp]: https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP
-
-### GraphQL
-
-The [GraphQL config](./src/graphql.js) applies to all GraphQL SDL files.
-
-- Uses [@graphql-eslint/eslint-plugin].
-
-- Includes the `schema-recommended` ruleset.
-
-- Disables [@graphql-eslint/naming-convention] to allow the use of lifecycle style naming (example: `Get*` and `List*`).
-
-[@graphql-eslint/eslint-plugin]: https://the-guild.dev/graphql/eslint/docs
-[@graphql-eslint/naming-convention]: https://the-guild.dev/graphql/eslint/rules/naming-convention
