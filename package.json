@@ -1,6 +1,6 @@
 {
 	"name": "eslint-config-connorjs",
-	"version": "1.0.0-beta.2",
+	"version": "0.0.0-gitversion-rc.0",
 	"description": "@connorjs’s preferred ESLint configuration. With ESLint flat config.",
 	"keywords": [
 		"eslint",
@@ -22,7 +22,7 @@
 	},
 	"type": "module",
 	"engines": {
-		"node": "^18.18.0 || >=20.0.0"
+		"node": "^18.18.0 || ^20.9.0 || >=21.1.0"
 	},
 	"files": [
 		"lib"
@@ -35,7 +35,6 @@
 		"eslint": "eslint -f pretty .",
 		"eslint:fix": "npm run eslint -- --fix",
 		"prepare": "is-ci || husky husky",
-		"prepublishOnly": "npm run ci-build",
 		"prettier": "prettier -c '**/*.{cjs,js,json,yaml}'",
 		"prettier:fix": "npm run prettier -- -w"
 	},
@@ -43,6 +42,7 @@
 		"@eslint/js": "^8.57.0",
 		"@html-eslint/eslint-plugin": "~0.25.0",
 		"@html-eslint/parser": "~0.25.0",
+		"@types/eslint": "^8.56.11",
 		"eslint": "^8.57.0",
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-formatter-pretty": "^6.0.1",
@@ -55,15 +55,14 @@
 		"eslint-plugin-simple-import-sort": "^12.1.1",
 		"eslint-plugin-sonarjs": "^1.0.4",
 		"eslint-plugin-unicorn": "^55.0.0",
-		"globals": "^15.8.0",
+		"globals": "^15.9.0",
 		"jsonc-eslint-parser": "^2.4.0",
-		"typescript-eslint": "^7.17.0"
+		"typescript-eslint": "^8.0.0"
 	},
 	"devDependencies": {
-		"@types/eslint": "^8.56.11",
-		"husky": "^9.1.3",
+		"husky": "^9.1.4",
 		"is-ci": "^3.0.1",
-		"lint-staged": "^15.2.7",
+		"lint-staged": "^15.2.8",
 		"prettier": "^3.3.3"
 	}
 }
