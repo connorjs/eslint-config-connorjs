@@ -61,6 +61,7 @@ jobs:
         with:
           cache: npm
           node-version-file: .node-version
+          registry-url: https://registry.npmjs.org
 
       - name: Set version
         run: sed -i 's/0.0.0-gitversion/${{ env.GitVersion_SemVer }}/g' package.json
