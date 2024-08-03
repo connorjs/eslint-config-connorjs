@@ -27,7 +27,10 @@ jobs:
         id: GitVersion
         uses: gittools/actions/gitversion/execute@v2.0.1
         with:
-          useConfigFile: true
+          overrideConfig: |
+            workflow=GitHubFlow/v1
+            mode=ContinuousDeployment
+            label=rc
 
       - name: Use Node.js
         uses: actions/setup-node@v4
